@@ -1,0 +1,1 @@
+D:\Projetos\api-blue-book\build\classes\kotlin\main\com\norus\apibluebook\ApiBlueBookApplication.class;D:\Projetos\api-blue-book\build\classes\kotlin\main\com\norus\apibluebook\ApiBlueBookApplicationKt.class
