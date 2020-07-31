@@ -1,0 +1,16 @@
+spring:
+  jpa:
+    show-sql: true
+    hibernate.ddl-auto: none
+    database-platform: org.hibernate.dialect.MySQL5Dialect
+  datasource:
+    url: jdbc:mysql://localhost:3307/blue_book
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+  properties:
+    hibernate:
+      dialect: org.hibernate.dialect.MySQL5Dialect
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/changelogs/db.changelog-master.xml
