@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk-alpine
+FROM openjdk:11-jdk-alpine
 ARG JAR_FILE=target/*.jar
 
 # TODO: change this to run on ci
