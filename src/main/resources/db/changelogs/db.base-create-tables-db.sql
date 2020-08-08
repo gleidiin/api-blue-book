@@ -60,3 +60,17 @@ CREATE TABLE `challenge` (
     FOREIGN KEY (`id_template_challenge`) REFERENCES template_challenge(`id`),
     FOREIGN KEY (`id_question`) REFERENCES question(`id`)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1;
+
+
+CREATE TABLE `challenge_answer` (
+    `id` bigint NOT NULL AUTO_INCREMENT,
+    `id_challenge` bigint NOT NULL,
+    `id_question` bigint NOT NULL,
+    `nickname` varchar(255) NOT NULL,
+    `right`  TINYINT(1) NOT NULL DEFAULT 0,
+    `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
+    `updated_at` datetime ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (`id_challenge`) REFERENCES challenge(`id`),
+    FOREIGN KEY (`id_question`) REFERENCES question(`id`)
+) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1;
