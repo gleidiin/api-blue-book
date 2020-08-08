@@ -8,7 +8,6 @@ import javax.persistence.*
 class TemplateChallenge(
         var name: String,
         var description: String,
-        @Column(name = "reference_code") var referenceCode: String,
         @Column(name = "created_at") var createdAt: Date,
         @Column(name = "updated_at") var updatedAt: Date,
         @Id @GeneratedValue var id: Long? = null)
