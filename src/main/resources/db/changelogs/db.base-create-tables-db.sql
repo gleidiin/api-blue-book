@@ -13,23 +13,15 @@ CREATE TABLE `question` (
 
 CREATE TABLE `answer` (
     `id` bigint NOT NULL AUTO_INCREMENT,
+    `id_question` bigint NOT NULL,
     `content` varchar(600) NOT NULL,
     `correct` TINYINT(1) NOT NULL DEFAULT 0,
     `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
     `updated_at` datetime ON UPDATE CURRENT_TIMESTAMP,
-    PRIMARY KEY (`id`)
-) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1;
-
-CREATE TABLE `question_answer` (
-    `id` bigint NOT NULL AUTO_INCREMENT,
-    `id_answer` bigint NOT NULL,
-    `id_question` bigint NOT NULL,
-    `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
-    `updated_at` datetime ON UPDATE CURRENT_TIMESTAMP,
     PRIMARY KEY (`id`),
-    FOREIGN KEY (`id_answer`) REFERENCES answer(`id`),
     FOREIGN KEY (`id_question`) REFERENCES question(`id`)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1;
+
 
 CREATE TABLE `template_challenge` (
     `id` bigint NOT NULL AUTO_INCREMENT,
