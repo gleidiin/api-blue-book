@@ -1,10 +1,10 @@
 package com.norus.apibluebook.repositories
 
-import com.norus.apibluebook.entities.Answer
-import com.norus.apibluebook.entities.Question
+import com.norus.apibluebook.entities.AnswerEntity
+import com.norus.apibluebook.entities.QuestionEntity
 import org.springframework.data.repository.CrudRepository
 
-interface AnswerRepository: CrudRepository<Answer, Long> {
-    fun findAllByQuestion(question: Question):Iterable<Answer>
+interface AnswerRepository: CrudRepository<AnswerEntity, Long> {
+    fun findAllByQuestion(question: QuestionEntity):Iterable<AnswerEntity>
 }
 

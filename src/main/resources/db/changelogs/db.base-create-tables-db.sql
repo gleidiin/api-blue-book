@@ -22,15 +22,13 @@ CREATE TABLE `answer` (
     FOREIGN KEY (`id_question`) REFERENCES question(`id`)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1;
 
-
 CREATE TABLE `template_challenge` (
     `id` bigint NOT NULL AUTO_INCREMENT,
     `name` varchar(120) NOT NULL,
     `description` varchar(360) NOT NULL,
     `created_at` datetime DEFAULT CURRENT_TIMESTAMP,
     `updated_at` datetime ON UPDATE CURRENT_TIMESTAMP,
-    PRIMARY KEY (`id`),
-    UNIQUE KEY idx_unique_reference_code (`reference_code`)
+    PRIMARY KEY (`id`)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1;
 
 CREATE TABLE `template_challenge_question` (
@@ -57,6 +55,7 @@ CREATE TABLE `challenge` (
     `updated_at` datetime ON UPDATE CURRENT_TIMESTAMP,
     `finished_at` datetime,
     PRIMARY KEY (`id`),
+    UNIQUE KEY idx_unique_reference_code (`reference_code`),
     FOREIGN KEY (`id_template_challenge`) REFERENCES template_challenge(`id`),
     FOREIGN KEY (`id_question`) REFERENCES question(`id`)
 ) ENGINE=INNODB DEFAULT CHARSET=utf8mb4 AUTO_INCREMENT=1;

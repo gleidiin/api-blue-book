@@ -1,7 +1,7 @@
 package com.norus.apibluebook.repositories
 
-import com.norus.apibluebook.entities.Question
+import com.norus.apibluebook.entities.QuestionEntity
 import org.springframework.data.repository.CrudRepository
 
 
-interface QuestionRepository: CrudRepository<Question, Long>
+interface QuestionRepository: CrudRepository<QuestionEntity, Long>
