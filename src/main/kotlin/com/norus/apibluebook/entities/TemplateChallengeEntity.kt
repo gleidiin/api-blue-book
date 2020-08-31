@@ -9,4 +9,5 @@ data class TemplateChallengeEntity(
         var name: String,
         var description: String,
         override val createdAt: LocalDateTime,
-        override val id: Long? = null) : BaseEntity(id = id, createdAt = createdAt)
+        override val updatedAt: LocalDateTime,
+        override val id: Long? = null) : BaseEntity(id = id, createdAt = createdAt,updatedAt = updatedAt)
