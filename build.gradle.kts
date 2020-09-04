@@ -25,11 +25,14 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.liquibase:liquibase-core")
+	implementation("org.testcontainers:testcontainers:1.12.3")
+	implementation("org.testcontainers:junit-jupiter:1.12.3")
 	runtimeOnly("mysql:mysql-connector-java")
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
 	}
+	testImplementation("org.testcontainers:mysql:1.12.3")
 }
 
 tasks.withType<Test> {
