@@ -16,7 +16,7 @@ data class TemplateChallengeService(val templateChallengeRepository: TemplateCha
     }
 
     fun findTemplateChallengeById(id: Long): TemplateChallengeDTO {
-        val template =findTemplateChallenge(id)
+        val template = findTemplateChallenge(id)
         return TemplateChallengeDTO.fromTemplateChallenge(template)
     }
 
