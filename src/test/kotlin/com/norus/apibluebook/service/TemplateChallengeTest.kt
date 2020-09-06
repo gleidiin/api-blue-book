@@ -5,7 +5,6 @@ import com.norus.apibluebook.config.HikariContainer
 import com.norus.apibluebook.configs.AppError
 import com.norus.apibluebook.configs.AppException
 import com.norus.apibluebook.controllers.dtos.TemplateChallengeDTO
-import com.norus.apibluebook.repositories.TemplateChallengeRepository
 import com.norus.apibluebook.services.TemplateChallengeService
 import org.junit.Assert
 import org.junit.jupiter.api.Assertions

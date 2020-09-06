@@ -9,13 +9,13 @@ data class QuestionDTO(
         val id: Long? = null,
         val identifier: String,
         val content: String,
-        val answers: List<Any>
+        val answers: List<AnswerDTO>
 ) {
-    fun convertToQuestionEntity() = QuestionEntity(this.identifier, this.content, this.answers as List<AnswerEntity>, LocalDateTime.now(), LocalDateTime.now())
+    fun convertToQuestionEntity() = QuestionEntity(this.identifier, this.content, this.answers.map { it.convertToAnswerEntity() }, LocalDateTime.now(), LocalDateTime.now())
 
     companion object {
-        fun fromTemplateChallenge(entity: QuestionEntity): QuestionDTO {
-            return QuestionDTO(entity.id, entity.identifier, entity.content, entity.answers)
+        fun fromQuestionEntity(entity: QuestionEntity): QuestionDTO {
+            return QuestionDTO(entity.id, entity.identifier, entity.content, AnswerDTO.fromAnsweEntities(entity.answers))
         }
     }
 }
