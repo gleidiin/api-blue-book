@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
+import java.sql.Time
+import java.time.LocalTime
 
 @Controller
 @RequestMapping("/template-challenger")
@@ -31,6 +33,5 @@ data class TemplateChallengeController(val templateChallengeService: TemplateCha
     fun updateTemplateChallenge(@PathVariable id: Long, @RequestBody templateChallengeDTO: TemplateChallengeDTO): ResponseEntity<TemplateChallengeDTO> {
         return ResponseEntity.status(HttpStatus.OK).body(templateChallengeService.updateTemplateChallenge(templateChallengeDTO, id))
     }
-
 
 }

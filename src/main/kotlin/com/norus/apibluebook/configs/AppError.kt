@@ -4,5 +4,6 @@ import org.springframework.http.HttpStatus
 
 enum class AppError(val status: HttpStatus, val code: String, val message: String) {
 
-    TEMPLATE_CHALLENGE_NOT_FOUND(HttpStatus.NOT_FOUND,"API_001", "Template Challenge not found")
+    TEMPLATE_CHALLENGE_NOT_FOUND(HttpStatus.NOT_FOUND,"API_001", "Template Challenge not found"),
+    QUESTION_NOT_FOUND(HttpStatus.NOT_FOUND, code = "API_002", message = "Question not found")
 }

@@ -34,5 +34,8 @@ data class QuestionController(val questionService: QuestionService) {
             .body(questionService.updateQuestion(id, question))
 
     @DeleteMapping
-    fun delete(@PathVariable id: Long) = "OK".takeIf { questionService.deleteQuestion(id) == null  } ?: ResponseEntity.notFound()
+    fun delete(@PathVariable id: Long): ResponseEntity<Any> {
+        questionService.deleteQuestion(id)
+        return ResponseEntity.status(HttpStatus.NO_CONTENT).build()
+    }
 }

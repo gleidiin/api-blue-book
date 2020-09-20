@@ -2,11 +2,8 @@ package com.norus.apibluebook.services
 
 import com.norus.apibluebook.configs.AppError
 import com.norus.apibluebook.configs.AppException
-import com.norus.apibluebook.controllers.dtos.AnswerDTO
 import com.norus.apibluebook.controllers.dtos.QuestionDTO
-import com.norus.apibluebook.entities.AnswerEntity
 import com.norus.apibluebook.repositories.QuestionRepository
-import liquibase.pro.packaged.s
 import org.springframework.stereotype.Service
 
 @Service
@@ -40,6 +37,6 @@ data class QuestionService(val questionRepository: QuestionRepository) {
     }
 
     private fun findQuestion(id: Long) = questionRepository.findById(id).orElseThrow {
-        throw AppException(AppError.TEMPLATE_CHALLENGE_NOT_FOUND)
+        throw AppException(AppError.QUESTION_NOT_FOUND)
     }
 }
