@@ -45,6 +45,29 @@ tasks.withType<JacocoReport> {
 
 }
 
+val test by tasks.getting(Test::class) {
+	useJUnitPlatform { }
+}
+
+tasks.jacocoTestReport {
+	reports {
+		xml.isEnabled = false
+		csv.isEnabled = false
+		html.isEnabled = true
+		html.destination = file("$buildDir/reports/coverage")
+	}
+}
+
+tasks.jacocoTestCoverageVerification {
+	violationRules {
+		rule {
+			limit {
+				minimum = "0.1".toBigDecimal()
+			}
+		}
+	}
+}
+
 tasks.withType<KotlinCompile> {
 	kotlinOptions {
 		freeCompilerArgs = listOf("-Xjsr305=strict")

@@ -21,7 +21,7 @@ jobs:
     - name: Grant Permission
       run: chmod +x gradlew
     - name: Execute Tests
-      run: ./gradlew test
+      run: ./gradlew test --info
  #   - name: Execute Coverage
  #     run: ./gradlew check && ./gradlew codeCoverageReport && bash <(curl -s https://codecov.io/bash)
 
