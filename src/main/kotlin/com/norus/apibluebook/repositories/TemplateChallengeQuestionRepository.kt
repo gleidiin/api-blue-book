@@ -1,8 +1,6 @@
 package com.norus.apibluebook.repositories
 
-import com.norus.apibluebook.entities.TemplateChallengeEntity
 import com.norus.apibluebook.entities.TemplateChallengeQuestionEntity
-import org.springframework.data.jpa.repository.JpaRepository
-import org.springframework.data.repository.CrudRepository
+import org.springframework.data.repository.reactive.ReactiveCrudRepository
 
-interface TemplateChallengeQuestionRepository: JpaRepository<TemplateChallengeQuestionEntity, Long>
+interface TemplateChallengeQuestionRepository: ReactiveCrudRepository<TemplateChallengeQuestionEntity, Long>
