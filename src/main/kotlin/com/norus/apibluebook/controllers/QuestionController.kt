@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/v1/questions")
 data class QuestionController(val questionService: QuestionService) {
     @GetMapping("")
-    fun getAll() = arrayListOf<QuestionDTO>()
+    fun getAll() = questionService.findAllQuestion()
 
     @GetMapping("{id}")
     fun getById(@PathVariable id: Long) = ResponseEntity.status(HttpStatus.OK)

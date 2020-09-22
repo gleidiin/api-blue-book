@@ -21,14 +21,20 @@ dependencies {
 	// TODO: add version to all dependencies.
 	implementation("org.springframework.boot:spring-boot-starter-web")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
-	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+	// implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework:spring-webflux:5.2.8.RELEASE")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-	implementation("org.liquibase:liquibase-core")
+	//  implementation("org.liquibase:liquibase-core")
 	implementation("org.testcontainers:testcontainers:1.12.3")
 	implementation("org.testcontainers:junit-jupiter:1.12.3")
-	runtimeOnly("mysql:mysql-connector-java")
+
+	implementation("org.springframework.data:spring-data-r2dbc:1.0.0.RELEASE")
+	implementation("io.r2dbc:r2dbc-h2:0.8.1.RELEASE")
+	implementation("com.h2database:h2:1.4.199")
+
+	// runtimeOnly("mysql:mysql-connector-java")
+
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
