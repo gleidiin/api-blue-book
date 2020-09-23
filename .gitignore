@@ -5,6 +5,7 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 *.log
+jdbc:h2:./*
 
 
 ### STS ###
