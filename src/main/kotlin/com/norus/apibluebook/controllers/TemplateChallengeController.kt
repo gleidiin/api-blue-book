@@ -15,7 +15,7 @@ import java.time.LocalTime
 data class TemplateChallengeController(val templateChallengeService: TemplateChallengeService) {
 
     @PostMapping
-    fun create(templateChallenge: TemplateChallengeDTO) = ResponseEntity.status(HttpStatus.CREATED)
+    fun create(@RequestBody templateChallenge: TemplateChallengeDTO) = ResponseEntity.status(HttpStatus.CREATED)
             .body(templateChallengeService.createTemplateChallenge(templateChallenge))
 
     @GetMapping("/{id}")
