@@ -1,10 +1,10 @@
 package com.norus.apibluebook.entities
 
+import org.springframework.data.relational.core.mapping.Table
 import java.time.LocalDateTime
-import javax.persistence.*
 
-@Entity(name = "template_challenge")
-@Table(name = "template_challenge")
+
+@Table("template_challenge")
 data class TemplateChallengeEntity(
         var name: String,
         var description: String,

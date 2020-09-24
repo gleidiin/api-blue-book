@@ -1,12 +1,12 @@
 package com.norus.apibluebook.entities
 
+import org.springframework.data.relational.core.mapping.Table
 import java.time.LocalDateTime
-import javax.persistence.*
 
-@Entity @Table(name = "challenge_answer")
+@Table("challenge_answer")
 data class ChallengeAnswerEntity (
-        @JoinColumn(name = "id_challenge") @OneToOne(fetch = FetchType.LAZY) val challenge: ChallengeEntity,
-        @JoinColumn(name = "id_question") @OneToOne(fetch = FetchType.LAZY) val question: QuestionEntity,
+        val challenge: ChallengeEntity,
+        val question: QuestionEntity,
         val nickname: String,
         val right: Boolean,
         override val createdAt: LocalDateTime,
