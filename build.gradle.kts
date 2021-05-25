@@ -36,7 +36,7 @@ dependencies {
 	implementation("org.postgresql:postgresql:42.2.20")
 	implementation("com.h2database:h2:1.4.200")
 
-	implementation("org.liquibase:liquibase-core:3.8.1")
+	implementation("org.liquibase:liquibase-core")
 
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {

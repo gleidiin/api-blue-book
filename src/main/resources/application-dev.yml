@@ -1,7 +1,11 @@
 spring:
+  profiles: dev
   liquibase:
     enabled: true
-    drop-first: true
+    url: jdbc:postgresql://localhost:5432/postgres?schema=api
+    driverClassName: org.postgresql.Driver
+    user: postgres
+    password: postgres
     change-log: classpath:/db/changelogs/db.changelog-master.xml
   jpa:
     show-sql: true
@@ -16,3 +20,7 @@ spring:
     url: r2dbc:postgresql://localhost:5432/postgres?schema=api
     username: postgres
     password: postgres
+
+logging:
+  level:
+    liquibase: INFO
