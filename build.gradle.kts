@@ -32,8 +32,11 @@ dependencies {
 
 	implementation("org.springframework.data:spring-data-r2dbc:1.1.4.RELEASE")
 	implementation("io.r2dbc:r2dbc-h2:0.8.4.RELEASE")
+	implementation("io.r2dbc:r2dbc-postgresql:0.8.4.RELEASE")
+	implementation("org.postgresql:postgresql:42.2.20")
 	implementation("com.h2database:h2:1.4.200")
 
+	implementation("org.liquibase:liquibase-core:3.8.1")
 
 	developmentOnly("org.springframework.boot:spring-boot-devtools")
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {

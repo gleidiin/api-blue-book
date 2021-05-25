@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 
 @RestController()
-@RequestMapping("/v1/questions")
+@RequestMapping("/v1/questions/")
 data class QuestionController(val questionService: QuestionService) {
     @GetMapping("")
     fun getAll() = questionService.findAllQuestion()
