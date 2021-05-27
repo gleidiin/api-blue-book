@@ -22,9 +22,4 @@ internal class R2DBCConfiguration : AbstractR2dbcConfiguration() {
                         .username("sa")
                         .build()
         ) }
-
-    @Bean
-    fun transactionManager(connectionFactory: ConnectionFactory): ReactiveTransactionManager? {
-        return R2dbcTransactionManager(connectionFactory)
-    }
 }
