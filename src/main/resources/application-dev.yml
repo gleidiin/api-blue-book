@@ -1,5 +1,4 @@
 spring:
-  profiles: dev
   liquibase:
     enabled: false
     change-log: classpath:/db/changelogs/db.changelog-master.xml
@@ -12,3 +11,6 @@ spring:
     username: sa
     password:
     driverClassName: org.h2.Driver
+  config:
+    activate:
+      on-profile: dev
