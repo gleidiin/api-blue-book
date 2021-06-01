@@ -1,5 +1,4 @@
 spring:
-  profiles: production
   liquibase:
     enabled: true
     url: jdbc:postgresql://localhost:5432/postgres?schema=api
@@ -20,6 +19,9 @@ spring:
     url: r2dbc:postgresql://localhost:5432/postgres?schema=api
     username: postgres
     password: postgres
+  config:
+    activate:
+      on-profile: local
 
 logging:
   level:
