@@ -81,6 +81,24 @@
       <version>5.1.0</version>
       <scope>test</scope>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.liquibase/liquibase-core -->
+    <dependency>
+      <groupId>org.liquibase</groupId>
+      <artifactId>liquibase-core</artifactId>
+      <version>4.3.5</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.postgresql/postgresql -->
+    <dependency>
+      <groupId>org.postgresql</groupId>
+      <artifactId>postgresql</artifactId>
+      <version>42.2.20</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/io.r2dbc/r2dbc-postgresql -->
+    <dependency>
+      <groupId>io.r2dbc</groupId>
+      <artifactId>r2dbc-postgresql</artifactId>
+      <version>0.8.4.RELEASE</version>
+    </dependency>
   </dependencies>
 
   <build>
