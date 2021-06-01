@@ -1,16 +1,26 @@
 spring:
+  profiles: dev
   liquibase:
-    enabled: false
+    enabled: true
+    url: jdbc:postgresql://localhost:5432/postgres?schema=api
+    driverClassName: org.postgresql.Driver
+    user: postgres
+    password: postgres
     change-log: classpath:/db/changelogs/db.changelog-master.xml
-  h2:
-    console:
-      enabled: true
-      path: /h2
+  jpa:
+    show-sql: true
+    hibernate.ddl-auto: none
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
   datasource:
-    url: jdbc:h2:./data/db
-    username: sa
-    password:
-    driverClassName: org.h2.Driver
-  config:
-    activate:
-      on-profile: dev
+    driver-class-name: org.postgresql.Driver
+  properties:
+    hibernate:
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+  r2dbc:
+    url: r2dbc:postgresql://localhost:5432/postgres?schema=api
+    username: postgres
+    password: postgres
+
+logging:
+  level:
+    liquibase: INFO
