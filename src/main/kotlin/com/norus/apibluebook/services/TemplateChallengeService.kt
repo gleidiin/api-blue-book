@@ -14,7 +14,7 @@ data class TemplateChallengeService(val templateChallengeRepository: TemplateCha
 
     fun createTemplateChallenge(templateChallenge: TemplateChallengeDTO) = templateChallengeRepository
             .save(templateChallenge.convertToTemplateChallage())
-            .map { TemplateChallengeDTO.Companion::fromTemplateChallenge }
+            .map { TemplateChallengeDTO.fromTemplateChallenge(it) }
 
     fun findTemplateById(id: Long) = findTemplate(id)
             .map(TemplateChallengeDTO.Companion::fromTemplateChallenge)
@@ -24,7 +24,7 @@ data class TemplateChallengeService(val templateChallengeRepository: TemplateCha
                 it.name = templateChallenge.name
                 it.description = templateChallenge.description
                 templateChallengeRepository.save(it)
-            }.map { TemplateChallengeDTO.Companion::fromTemplateChallenge }
+            }.map { TemplateChallengeDTO.fromTemplateChallenge(it) }
 
     fun deleteTemplateChallenge(id: Long) {
         templateChallengeRepository.deleteById(id)
