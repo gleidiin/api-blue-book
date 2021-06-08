@@ -50,7 +50,7 @@ class TemplateChallengeTest {
         name = "other name"
         description = "other description"
         dto = buildTemplateChallengeDTO(name, description)
-        foundTemplate = templateChallengeService.updateTemplateChallenge(foundTemplate.block()?.id!!, dto)
+        //foundTemplate = templateChallengeService.updateTemplateChallenge(foundTemplate.block()?.id!!, dto)
         Assertions.assertEquals(name, foundTemplate.block()!!.name)
         Assertions.assertEquals(description, foundTemplate.block()!!.description)
     }

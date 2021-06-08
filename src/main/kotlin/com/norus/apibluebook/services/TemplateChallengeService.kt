@@ -13,8 +13,8 @@ data class TemplateChallengeService(val templateChallengeRepository: TemplateCha
 
 
     fun createTemplateChallenge(templateChallenge: TemplateChallengeDTO) = templateChallengeRepository
-            .save(templateChallenge.convertToTemplateChallage())
-            .map { TemplateChallengeDTO.fromTemplateChallenge(it) }
+            .save(templateChallenge.convertToTemplateChallage()).map(TemplateChallengeDTO.Companion::fromTemplateChallenge)
+
 
     fun findTemplateById(id: Long) = findTemplate(id)
             .map(TemplateChallengeDTO.Companion::fromTemplateChallenge)
@@ -26,13 +26,12 @@ data class TemplateChallengeService(val templateChallengeRepository: TemplateCha
                 templateChallengeRepository.save(it)
             }.map { TemplateChallengeDTO.fromTemplateChallenge(it) }
 
-    fun deleteTemplateChallenge(id: Long) {
-        templateChallengeRepository.deleteById(id)
+    fun deleteTemplateChallenge(id: Long): Mono<Void> {
+        return templateChallengeRepository.deleteById(id)
     }
 
-    private fun findTemplate(id: Long) = templateChallengeRepository
-            .findById(id)
-            .defaultIfEmpty(throw AppException(AppError.QUESTION_NOT_FOUND))
+    private fun findTemplate(id: Long) = templateChallengeRepository.findById(id)
+
 
 
 }

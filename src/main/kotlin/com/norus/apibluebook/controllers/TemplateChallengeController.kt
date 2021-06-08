@@ -7,29 +7,29 @@ import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
 import org.springframework.web.bind.annotation.*
+import reactor.core.publisher.Mono
 import java.sql.Time
 import java.time.LocalTime
 
-@Controller
-@RequestMapping("/v1/template-challenge")
+@RestController
+@RequestMapping("/v1/template-challenge/")
 data class TemplateChallengeController(val templateChallengeService: TemplateChallengeService) {
 
     @PostMapping
     fun create(@RequestBody templateChallenge: TemplateChallengeDTO) = ResponseEntity.status(HttpStatus.CREATED)
-            .body(templateChallengeService.createTemplateChallenge(templateChallenge))
+        .body(templateChallengeService.createTemplateChallenge(templateChallenge))
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     fun getById(@PathVariable id: Long) = ResponseEntity.status(HttpStatus.OK)
             .body(templateChallengeService.findTemplateById(id))
 
-    @PutMapping("/{id}")
+    @PutMapping("{id}")
     fun edit(@PathVariable id: Long, @RequestBody templateChallengeDTO: TemplateChallengeDTO) = ResponseEntity.status(HttpStatus.OK)
             .body(templateChallengeService.updateTemplateChallenge(id, templateChallengeDTO))
 
-    @DeleteMapping
-    fun delete(@PathVariable id: Long): ResponseEntity<Any> {
-        templateChallengeService.deleteTemplateChallenge(id)
-        return ResponseEntity.status(HttpStatus.NO_CONTENT).build()
+    @DeleteMapping("{id}")
+    fun delete(@PathVariable id: Long): Mono<Void> {
+        return templateChallengeService.deleteTemplateChallenge(id)
     }
 
 }
