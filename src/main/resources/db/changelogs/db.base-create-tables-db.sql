@@ -3,7 +3,7 @@
 --changeset gleidiin:#db.base-create-tables-db.sql:1
 
 CREATE TABLE question (
-    id bigint NOT NULL,
+    id serial NOT NULL,
     identifier varchar(60) NOT NULL,
     content varchar(1000) NOT NULL,
     created_at timestamp DEFAULT CURRENT_TIMESTAMP,
@@ -12,7 +12,7 @@ CREATE TABLE question (
 );
 
 CREATE TABLE answer (
-    id bigint NOT NULL,
+    id serial NOT NULL,
     id_question bigint NOT NULL,
     content varchar(600) NOT NULL,
     correct boolean NOT NULL DEFAULT false,
@@ -23,7 +23,7 @@ CREATE TABLE answer (
 );
 
 CREATE TABLE template_challenge (
-    id bigint NOT NULL,
+    id serial NOT NULL,
     name varchar(120) NOT NULL,
     description varchar(360) NOT NULL,
     created_at timestamp DEFAULT CURRENT_TIMESTAMP,
@@ -32,7 +32,7 @@ CREATE TABLE template_challenge (
 );
 
 CREATE TABLE template_challenge_question (
-    id bigint NOT NULL,
+    id serial NOT NULL,
     id_template_challenge bigint NOT NULL,
     id_question bigint NOT NULL,
     "order" smallint NOT NULL,
@@ -46,7 +46,7 @@ CREATE TABLE template_challenge_question (
 );
 
 CREATE TABLE challenge (
-    id bigint NOT NULL,
+    id serial NOT NULL,
     id_template_challenge bigint NOT NULL,
     id_question bigint NOT NULL,
     reference_code varchar(30) NOT NULL,
@@ -62,7 +62,7 @@ CREATE TABLE challenge (
 
 
 CREATE TABLE challenge_answer (
-    id bigint NOT NULL,
+    id serial NOT NULL,
     id_challenge bigint NOT NULL,
     id_question bigint NOT NULL,
     nickname varchar(255) NOT NULL,
