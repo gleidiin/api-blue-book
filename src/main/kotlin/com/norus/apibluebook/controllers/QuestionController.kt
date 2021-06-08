@@ -36,5 +36,5 @@ data class QuestionController(val questionService: QuestionService) {
             .body(questionService.updateQuestion(id, question))
 
     @DeleteMapping("{id}")
-    fun delete(@PathVariable id: Long): Mono<Void> = questionService.deleteQuestion(id)
+    fun delete(@PathVariable id: Long): ResponseEntity<Mono<Void>> = ResponseEntity.status(HttpStatus.NO_CONTENT).body(questionService.deleteQuestion(id))
 }
