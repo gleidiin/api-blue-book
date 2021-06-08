@@ -12,7 +12,7 @@ class QuestionTest {
     @Autowired
     lateinit var questionService: QuestionService
 
-    private fun buildDTO(identifier: String = "name", content: String = "content", answers: List<AnswerDTO> = listOf(AnswerDTO(content = "test", correct = true))) = QuestionDTO(identifier = identifier, content = content, answers = answers)
+    //private fun buildDTO(identifier: String = "name", content: String = "content", answers: List<AnswerDTO> = listOf(AnswerDTO(content = "test", correct = true))) = QuestionDTO(identifier = identifier, content = content, answers = answers)
 
 
     @Test

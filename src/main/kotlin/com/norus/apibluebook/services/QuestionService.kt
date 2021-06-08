@@ -12,11 +12,12 @@ import reactor.core.publisher.Mono
 data class QuestionService(val questionRepository: QuestionRepository) {
 
     fun findAllQuestion(): Flux<QuestionDTO> {
-        return this.questionRepository.findAll().map(QuestionDTO.Companion::fromQuestionEntity).log()
+        return this.questionRepository.findAll().map(QuestionDTO.Companion::fromQuestionEntity)
     }
 
     fun findQuestionById(id: Long): Mono<QuestionDTO> {
         return findQuestion(id).map(QuestionDTO.Companion::fromQuestionEntity)
+
     }
 
     fun saveQuestion(questionDTO: QuestionDTO): Mono<QuestionDTO> {
@@ -29,17 +30,15 @@ data class QuestionService(val questionRepository: QuestionRepository) {
         val convertToQuestionEntity = questionDTO.convertToQuestionEntity()
 
         return questionRepository.findById(id).flatMap { questionEntity ->
-            questionEntity.answers = convertToQuestionEntity.answers
             questionEntity.content = convertToQuestionEntity.content
             questionEntity.identifier = convertToQuestionEntity.identifier
             this.questionRepository.save(questionEntity)
         }.map(QuestionDTO.Companion::fromQuestionEntity)
     }
 
-    fun deleteQuestion(id: Long) {
-        questionRepository.deleteById(id)
+    fun deleteQuestion(id: Long): Mono<Void> {
+        return questionRepository.deleteById(id)
     }
 
     private fun findQuestion(id: Long) = questionRepository.findById(id)
-                .defaultIfEmpty(throw AppException(AppError.QUESTION_NOT_FOUND))
 }

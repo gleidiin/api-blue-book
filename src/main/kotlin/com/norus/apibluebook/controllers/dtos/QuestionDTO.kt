@@ -8,13 +8,13 @@ data class QuestionDTO(
         val id: Long? = null,
         val identifier: String,
         val content: String,
-        val answers: List<AnswerDTO>
+        val answers: List<AnswerDTO> = emptyList()
 ) {
-    fun convertToQuestionEntity() = QuestionEntity(this.identifier, this.content, this.answers.map { it.convertToAnswerEntity() }, LocalDateTime.now(), LocalDateTime.now())
+    fun convertToQuestionEntity() = QuestionEntity(this.identifier, this.content, LocalDateTime.now(), LocalDateTime.now())
 
     companion object {
         fun fromQuestionEntity(entity: QuestionEntity): QuestionDTO {
-            return QuestionDTO(entity.id, entity.identifier, entity.content, AnswerDTO.fromAnsweEntities(entity.answers))
+            return QuestionDTO(entity.id, entity.identifier, entity.content)
         }
     }
 }

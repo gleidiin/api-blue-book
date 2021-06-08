@@ -7,7 +7,6 @@ import java.time.LocalDateTime
 data class QuestionEntity(
         var identifier: String,
         var content: String,
-        var answers: List<AnswerEntity>,
         override val createdAt: LocalDateTime,
         override val updatedAt: LocalDateTime,
         override val id: Long? = null) : BaseEntity(id = id, createdAt = createdAt, updatedAt = updatedAt)
