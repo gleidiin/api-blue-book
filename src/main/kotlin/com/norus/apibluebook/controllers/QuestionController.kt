@@ -33,7 +33,7 @@ data class QuestionController(val questionService: QuestionService) {
     fun edit(@PathVariable id: Long, @RequestBody question: QuestionDTO) = ResponseEntity.status(HttpStatus.OK)
             .body(questionService.updateQuestion(id, question))
 
-    @DeleteMapping
+    @DeleteMapping("{id}")
     fun delete(@PathVariable id: Long): ResponseEntity<Any> {
         questionService.deleteQuestion(id)
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build()

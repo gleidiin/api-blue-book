@@ -18,6 +18,11 @@
   </properties>
   <dependencies>
     <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-jdbc</artifactId>
+      <version>3.0.3.RELEASE</version>
+    </dependency>
+    <dependency>
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-data-r2dbc</artifactId>
     </dependency>
@@ -116,6 +121,7 @@
       <version>${kotlin.version}</version>
     </dependency>
   </dependencies>
+
 
   <build>
     <sourceDirectory>src/main/kotlin</sourceDirectory>

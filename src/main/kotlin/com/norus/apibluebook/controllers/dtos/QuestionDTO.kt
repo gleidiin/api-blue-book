@@ -1,6 +1,5 @@
 package com.norus.apibluebook.controllers.dtos
 
-import com.norus.apibluebook.entities.AnswerEntity
 import com.norus.apibluebook.entities.QuestionEntity
 import java.time.LocalDateTime
 
