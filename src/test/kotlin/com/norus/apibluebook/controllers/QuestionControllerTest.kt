@@ -36,7 +36,7 @@ class QuestionControllerTest {
             .uri(uri)
             .accept(MediaType.APPLICATION_JSON)
             .exchange()
-            .expectStatus().isOk()
+            .expectStatus().isOk
             .expectBodyList(QuestionDTO::class.java)
     }
 
@@ -50,7 +50,7 @@ class QuestionControllerTest {
             .accept(MediaType.APPLICATION_JSON)
             .body(Mono.just(question), question::class.java)
             .exchange()
-            .expectStatus().isCreated()
+            .expectStatus().isCreated
             .expectBody(QuestionDTO::class.java)
     }
 
@@ -63,7 +63,7 @@ class QuestionControllerTest {
             .uri(uri + question.id)
             .accept(MediaType.APPLICATION_JSON)
             .exchange()
-            .expectStatus().isOk()
+            .expectStatus().isOk
             .expectBody().jsonPath("$.identifier")
             .isEqualTo("my identifier")
     }
@@ -78,7 +78,7 @@ class QuestionControllerTest {
             .accept(MediaType.APPLICATION_JSON)
             .body(Mono.just(question), question::class.java)
             .exchange()
-            .expectStatus().isOk()
+            .expectStatus().isOk
             .expectBody().jsonPath("$.identifier")
             .isEqualTo(question.identifier)
     }
@@ -90,7 +90,7 @@ class QuestionControllerTest {
             .uri(uri + "1")
             .accept(MediaType.APPLICATION_JSON)
             .exchange()
-            .expectStatus().isOk()
+            .expectStatus().isOk
     }
 
 }
