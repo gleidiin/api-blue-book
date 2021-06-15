@@ -21,8 +21,7 @@ data class QuestionService(val questionRepository: QuestionRepository) {
     }
 
     fun saveQuestion(questionDTO: QuestionDTO): Mono<QuestionDTO> {
-        val convertToQuestionEntity = questionDTO.convertToQuestionEntity()
-        return  this.questionRepository.save(convertToQuestionEntity).map(QuestionDTO.Companion::fromQuestionEntity)
+        return  this.questionRepository.save(questionDTO.convertToQuestionEntity()).map(QuestionDTO.Companion::fromQuestionEntity)
     }
 
     fun updateQuestion(id: Long, questionDTO: QuestionDTO): Mono<QuestionDTO> {
