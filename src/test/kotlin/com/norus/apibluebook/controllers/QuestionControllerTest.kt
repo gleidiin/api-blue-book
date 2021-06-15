@@ -70,10 +70,8 @@ class QuestionControllerTest {
 
     @Test
     fun `Given an existent question update it`() {
-        val question = QuestionDTO( id = 1,
-            identifier = "my identifier updated",
-            content = "question content"
-        )
+        val question = QuestionDTO(1, "my identifier", "question content")
+        every { service.updateQuestion(1, question) } returns Mono.just(question)
 
         client.put()
             .uri(uri + question.id)
@@ -87,6 +85,7 @@ class QuestionControllerTest {
 
     @Test
     fun `Given an existent question delete it`() {
+        every { service.deleteQuestion(1) } returns Mono.empty()
         client.delete()
             .uri(uri + "1")
             .accept(MediaType.APPLICATION_JSON)
