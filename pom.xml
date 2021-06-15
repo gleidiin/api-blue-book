@@ -97,6 +97,19 @@
       <artifactId>postgresql</artifactId>
       <version>42.2.20</version>
     </dependency>
+    <dependency>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-starter-test</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/junit/junit -->
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>4.12</version>
+      <scope>test</scope>
+    </dependency>
+
     <!-- https://mvnrepository.com/artifact/io.r2dbc/r2dbc-postgresql -->
     <dependency>
       <groupId>io.r2dbc</groupId>

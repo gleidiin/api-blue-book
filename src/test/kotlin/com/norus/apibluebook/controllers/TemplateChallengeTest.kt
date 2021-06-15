@@ -1,4 +1,4 @@
-package com.norus.apibluebook.service
+package com.norus.apibluebook.controllers
 
 
 import com.norus.apibluebook.configs.AppError
