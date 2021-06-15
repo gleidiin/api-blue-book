@@ -1,28 +1,38 @@
 package com.norus.apibluebook.controllers
 
+import com.ninjasquad.springmockk.MockkBean
 import com.norus.apibluebook.controllers.dtos.QuestionDTO
-import org.junit.jupiter.api.Test
+import com.norus.apibluebook.services.QuestionService
+import io.mockk.every
+import org.junit.Test
 import org.junit.runner.RunWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.reactive.WebFluxTest
 import org.springframework.http.MediaType
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner
+import org.springframework.test.context.junit4.SpringRunner
 import org.springframework.test.web.reactive.server.WebTestClient
+import reactor.core.publisher.Flux
 import reactor.core.publisher.Mono
 
 
-@RunWith(SpringJUnit4ClassRunner::class)
+@RunWith(SpringRunner::class)
 @WebFluxTest(QuestionController::class)
 class QuestionControllerTest {
 
     @Autowired
-    lateinit var webTestClient: WebTestClient
+    lateinit var client: WebTestClient;
 
+    @MockkBean
+    private lateinit var service: QuestionService
     private val uri = "/v1/questions/"
 
     @Test
     fun `Given get all end point return all`() {
-        webTestClient.get()
+        every {
+            service.findAllQuestion()
+        } returns Flux.just(QuestionDTO(0, "bla", "question"))
+
+        client.get()
             .uri(uri)
             .accept(MediaType.APPLICATION_JSON)
             .exchange()
@@ -32,12 +42,10 @@ class QuestionControllerTest {
 
     @Test
     fun `Given a new question save it`() {
-        val question = QuestionDTO( id = 1,
-            identifier = "my identifier",
-            content = "question content"
-        )
+        val question = QuestionDTO(1, "my identifier", "question content")
+        every { service.saveQuestion(question) } returns Mono.just(question)
 
-        webTestClient.post()
+        client.post()
             .uri(uri)
             .accept(MediaType.APPLICATION_JSON)
             .body(Mono.just(question), question::class.java)
@@ -48,8 +56,11 @@ class QuestionControllerTest {
 
     @Test
     fun `Given a question id find it`() {
-        webTestClient.get()
-            .uri(uri + "1")
+        val question = QuestionDTO(1, "my identifier", "question content")
+        every { service.findQuestionById(1) } returns Mono.just(question)
+
+        client.get()
+            .uri(uri + question.id)
             .accept(MediaType.APPLICATION_JSON)
             .exchange()
             .expectStatus().isOk()
@@ -64,7 +75,7 @@ class QuestionControllerTest {
             content = "question content"
         )
 
-        webTestClient.put()
+        client.put()
             .uri(uri + question.id)
             .accept(MediaType.APPLICATION_JSON)
             .body(Mono.just(question), question::class.java)
@@ -76,7 +87,7 @@ class QuestionControllerTest {
 
     @Test
     fun `Given an existent question delete it`() {
-        webTestClient.delete()
+        client.delete()
             .uri(uri + "1")
             .accept(MediaType.APPLICATION_JSON)
             .exchange()
