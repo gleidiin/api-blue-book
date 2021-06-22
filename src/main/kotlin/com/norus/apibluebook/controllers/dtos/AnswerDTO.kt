@@ -16,8 +16,11 @@ data class AnswerDTO(
             return AnswerDTO(entity.id, entity.idQuestion, entity.content, entity.correct)
         }
 
-        fun fromAnsweEntities(entities: List<AnswerEntity>): List<AnswerDTO> {
-            return entities.map { this.fromAnswerEntity(it) }
+        fun fromAnswerEntities(entities: List<AnswerEntity>?): List<AnswerDTO> {
+            if (entities != null) {
+                return entities.map { this.fromAnswerEntity(it) }
+            }
+            return emptyList()
         }
     }
 }
