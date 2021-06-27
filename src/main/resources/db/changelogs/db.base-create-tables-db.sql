@@ -32,12 +32,12 @@ CREATE TABLE template_challenge_question (
     id serial NOT NULL PRIMARY KEY,
     id_template_challenge bigint NOT NULL,
     id_question bigint NOT NULL,
-    "order" smallint NOT NULL,
+    position int NOT NULL,
     created_at timestamp DEFAULT CURRENT_TIMESTAMP,
     updated_at timestamp,
     FOREIGN KEY (id_template_challenge) REFERENCES template_challenge(id),
     FOREIGN KEY (id_question) REFERENCES question(id),
-    UNIQUE (id, id_question, "order"),
+    UNIQUE (id, id_question, position),
     UNIQUE (id_template_challenge, id_question)
 );
 
