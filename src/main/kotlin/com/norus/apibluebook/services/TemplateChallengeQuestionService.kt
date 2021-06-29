@@ -16,41 +16,31 @@ data class TemplateChallengeQuestionService(
     val questionRepository: QuestionRepository
 ) {
 
-
     fun createTemplateChallengeQuestion(templateChallengeQuestionDTO: TemplateChallengeQuestionDTO): Mono<TemplateChallengeQuestionResponseDTO>? {
-
         val templateQuestionEntity = templateChallengeQuestionDTO.convertToTemplateChallengeQuestion()
-        val savedTemplate = templateChallengeQuestionRepository.save(templateQuestionEntity).block()
-        val templateChallenge = templateChallengeRepository.findById(templateChallengeQuestionDTO.templateChallengeId)
-        val question = questionRepository.findById(templateChallengeQuestionDTO.questionId)
-
-        return savedTemplate?.let {
-            Mono.zip(templateChallenge, question).map {
-                TemplateChallengeQuestionResponseDTO.fromTemplateChallengeQuestion(savedTemplate, it.t1, it.t2)
-            }
+        return templateChallengeQuestionRepository.save(templateQuestionEntity).flatMap { template ->
+            val templateChallenge = templateChallengeRepository.findById(templateChallengeQuestionDTO.templateChallengeId)
+            val question = questionRepository.findById(templateChallengeQuestionDTO.questionId)
+            Mono.zip(templateChallenge, question).map { TemplateChallengeQuestionResponseDTO.fromTemplateChallengeQuestion(template, it.t1, it.t2) }
         }
     }
 
-    fun updateTemplateChallengeQuestion(templateQuestionId: Long, templateChallengeQuestionDTO: TemplateChallengeQuestionDTO): Mono<TemplateChallengeQuestionResponseDTO>? {
+    fun updateTemplateChallengeQuestion(
+        templateQuestionId: Long,
+        templateChallengeQuestionDTO: TemplateChallengeQuestionDTO
+    ): Mono<TemplateChallengeQuestionResponseDTO>? {
 
-        val templateQuestion = templateChallengeQuestionRepository.findById(templateQuestionId).flatMap {
-            it.idQuestion = templateChallengeQuestionDTO.questionId
-            it.idTemplateChallenge = templateChallengeQuestionDTO.templateChallengeId
-            it.position = templateChallengeQuestionDTO.position
-            templateChallengeQuestionRepository.save(it)
-        }.block()
-
-        val templateChallenge = templateChallengeRepository.findById(templateChallengeQuestionDTO.templateChallengeId)
-        val question = questionRepository.findById(templateChallengeQuestionDTO.questionId)
-
-        return templateQuestion?.let {
-            Mono.zip(templateChallenge, question).map {
-                TemplateChallengeQuestionResponseDTO.fromTemplateChallengeQuestion(templateQuestion, it.t1, it.t2)
-            }
+        return templateChallengeQuestionRepository.findById(templateQuestionId).flatMap { template ->
+            template.idQuestion = templateChallengeQuestionDTO.questionId
+            template.idTemplateChallenge = templateChallengeQuestionDTO.templateChallengeId
+            template.position = templateChallengeQuestionDTO.position
+            templateChallengeQuestionRepository.save(template)
+            val templateChallenge = templateChallengeRepository.findById(templateChallengeQuestionDTO.templateChallengeId)
+            val question = questionRepository.findById(templateChallengeQuestionDTO.questionId)
+            Mono.zip(templateChallenge, question).map { TemplateChallengeQuestionResponseDTO.fromTemplateChallengeQuestion(template, it.t1, it.t2) }
         }
     }
 
     fun deleteTemplateQuestionChallenge(id: Long) = templateChallengeQuestionRepository.deleteById(id)
-
 
 }
