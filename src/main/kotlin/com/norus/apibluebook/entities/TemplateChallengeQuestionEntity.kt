@@ -8,9 +8,9 @@ import java.time.LocalDateTime
 @Table("template_challenge_question")
 data class TemplateChallengeQuestionEntity(
         @Column( "id_template_challenge")
-        var idTemplateChallenge: Long?,
+        var idTemplateChallenge: Long,
         @Column( "id_question")
-        var idQuestion: Long?,
+        var idQuestion: Long,
         var position: Int,
         override val updatedAt: LocalDateTime,
         override val id: Long? = null) : BaseEntity(id = id, updatedAt = updatedAt)

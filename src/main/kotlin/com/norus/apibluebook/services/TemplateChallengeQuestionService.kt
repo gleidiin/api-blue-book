@@ -19,9 +19,11 @@ data class TemplateChallengeQuestionService(
     fun createTemplateChallengeQuestion(templateChallengeQuestionDTO: TemplateChallengeQuestionDTO): Mono<TemplateChallengeQuestionResponseDTO>? {
         val templateQuestionEntity = templateChallengeQuestionDTO.convertToTemplateChallengeQuestion()
         return templateChallengeQuestionRepository.save(templateQuestionEntity).flatMap { template ->
-            val templateChallenge = templateChallengeRepository.findById(templateChallengeQuestionDTO.templateChallengeId)
+            val templateChallenge =
+                templateChallengeRepository.findById(templateChallengeQuestionDTO.templateChallengeId)
             val question = questionRepository.findById(templateChallengeQuestionDTO.questionId)
-            Mono.zip(templateChallenge, question).map { TemplateChallengeQuestionResponseDTO.fromTemplateChallengeQuestion(template, it.t1, it.t2) }
+            Mono.zip(templateChallenge, question)
+                .map { TemplateChallengeQuestionResponseDTO.fromTemplateChallengeQuestion(template, it.t1, it.t2) }
         }
     }
 
@@ -35,8 +37,18 @@ data class TemplateChallengeQuestionService(
             template.idTemplateChallenge = templateChallengeQuestionDTO.templateChallengeId
             template.position = templateChallengeQuestionDTO.position
             templateChallengeQuestionRepository.save(template)
-            val templateChallenge = templateChallengeRepository.findById(templateChallengeQuestionDTO.templateChallengeId)
+            val templateChallenge =
+                templateChallengeRepository.findById(templateChallengeQuestionDTO.templateChallengeId)
             val question = questionRepository.findById(templateChallengeQuestionDTO.questionId)
+            Mono.zip(templateChallenge, question)
+                .map { TemplateChallengeQuestionResponseDTO.fromTemplateChallengeQuestion(template, it.t1, it.t2) }
+        }
+    }
+
+    fun findById(templateQuestionId: Long): Mono<TemplateChallengeQuestionResponseDTO> {
+       return templateChallengeQuestionRepository.findById(templateQuestionId).flatMap { template ->
+            val templateChallenge =  templateChallengeRepository.findById(template.idTemplateChallenge)
+            val question =  questionRepository.findById(template.idQuestion)
             Mono.zip(templateChallenge, question).map { TemplateChallengeQuestionResponseDTO.fromTemplateChallengeQuestion(template, it.t1, it.t2) }
         }
     }

@@ -16,19 +16,22 @@ data class TemplateChallengeQuestionController(val templateChallengeQuestionServ
 
     @PostMapping
     fun create(@RequestBody templateChallengeQuestion: TemplateChallengeQuestionDTO): ResponseEntity<Mono<TemplateChallengeQuestionResponseDTO>> {
-        return ResponseEntity.status(HttpStatus.CREATED)
-            .body(templateChallengeQuestionService.createTemplateChallengeQuestion(templateChallengeQuestion))
+        return ResponseEntity.status(HttpStatus.CREATED).body(templateChallengeQuestionService.createTemplateChallengeQuestion(templateChallengeQuestion))
     }
 
     @PutMapping("{id}")
     fun updateTemplateQuestion(@PathVariable id: Long, @RequestBody templateChallengeQuestion: TemplateChallengeQuestionDTO): ResponseEntity<Mono<TemplateChallengeQuestionResponseDTO>> {
-        return ResponseEntity.status(HttpStatus.OK)
-            .body(templateChallengeQuestionService.updateTemplateChallengeQuestion(id, templateChallengeQuestion))
+        return ResponseEntity.status(HttpStatus.OK).body(templateChallengeQuestionService.updateTemplateChallengeQuestion(id, templateChallengeQuestion))
     }
 
     @DeleteMapping("{id}")
     fun delete(@PathVariable id: Long): Mono<Void> {
         return templateChallengeQuestionService.deleteTemplateQuestionChallenge(id)
+    }
+
+    @GetMapping("{id}")
+    fun getById(@PathVariable id: Long): ResponseEntity<Mono<TemplateChallengeQuestionResponseDTO>> {
+        return ResponseEntity.status(HttpStatus.OK).body(templateChallengeQuestionService.findById(id))
     }
 
 
