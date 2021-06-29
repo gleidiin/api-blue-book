@@ -7,7 +7,7 @@ data class TemplateChallengeDTO(val id: Long? = null,
                                 val name: String,
                                 val description: String) {
 
-    fun convertToTemplateChallage() = TemplateChallengeEntity(this.name, this.description, LocalDateTime.now(),LocalDateTime.now())
+    fun convertToTemplateChallenge() = TemplateChallengeEntity(this.name, this.description, LocalDateTime.now(),LocalDateTime.now())
 
     companion object{
         fun fromTemplateChallenge(entity: TemplateChallengeEntity): TemplateChallengeDTO {

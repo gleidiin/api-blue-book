@@ -13,7 +13,7 @@ data class TemplateChallengeService(val templateChallengeRepository: TemplateCha
 
 
     fun createTemplateChallenge(templateChallenge: TemplateChallengeDTO) = templateChallengeRepository
-            .save(templateChallenge.convertToTemplateChallage()).map(TemplateChallengeDTO.Companion::fromTemplateChallenge)
+            .save(templateChallenge.convertToTemplateChallenge()).map(TemplateChallengeDTO.Companion::fromTemplateChallenge)
 
 
     fun findTemplateById(id: Long) = findTemplate(id)
